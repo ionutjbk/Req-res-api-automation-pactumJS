@@ -1,7 +1,7 @@
 const { spec, request } = require('pactum');
 const baseUrl = 'https://reqres.in/api'
 
-describe('GET request suite', () => {
+describe('GET resources suite', () => {
 
     before( async () => {
         request.setDefaultTimeout(10000)

@@ -26,7 +26,6 @@ describe('PUT user suite', () => {
             "job": "zion resident",
             "updatedAt": notNull()
         })
-        .inspect()
         .expectStatus(200)
     });
 
