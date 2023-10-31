@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx mocha req-res-tests --timeout=10000"
+    "test": "npx mocha tests --timeout=10000",
+    "html-test-report": "npx mocha tests --reporter mochawesome --reporter-options reportDir=report-results,reportFilename=req-req-automation-report --timeout=10000"
   },
   "keywords": [],
   "author": "",

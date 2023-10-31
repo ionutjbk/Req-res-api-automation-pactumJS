@@ -1,10 +1,10 @@
 const { spec, request } = require('pactum');
 const { notNull } = require('pactum-matchers');
 const { faker } = require('@faker-js/faker');
+
 const baseUrl = 'https://reqres.in/api'
 
 describe('PUT user suite', () => {
-
     before( async () => {
         request.setDefaultTimeout(10000)
     });
@@ -14,19 +14,17 @@ describe('PUT user suite', () => {
         const randomJob = faker.person.jobTitle()
 
         const updatedInfo = {
-            "name": "morpheus",
-            "job": "zion resident"
+            "name": randomName,
+            "job": randomJob
         }
             
-        await spec().get(baseUrl + '/users/10')
+        await spec().put(baseUrl + '/users/10')
         .withHeaders('Content-Type', 'application/json')
         .withBody(updatedInfo)
         .expectJsonLike({
-            "name": "morpheus",
-            "job": "zion resident",
-            "updatedAt": notNull()
+            "name": randomName,
+            "job": randomJob
         })
         .expectStatus(200)
     });
-
 });

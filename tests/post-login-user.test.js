@@ -1,27 +1,31 @@
 const { spec, request } = require('pactum');
+
 const baseUrl = 'https://reqres.in/api'
 
-describe('POST register requests', () => {
+describe('POST login user suite', () => {
+    before( async () => {
+        request.setDefaultTimeout(10000)
+    });
 
-    it('Register user succesfull', async () => {
+    it('Login user with valid credentials', async () => {
         const requestBody = {
             "email": "eve.holt@reqres.in",
             "password": "pistol"
         }
 
-        await spec().post(baseUrl + '/register')
+        await spec().post(baseUrl + '/login')
         .withHeaders('Content-Type', 'application/json')
         .withBody(requestBody)
         .expectStatus(200)
     });
 
-    it('Register user unsuccesfull', async () => {
+    it('Login user without password', async () => {
         const requestBody = {
-            "email": "@reqres.in",
-            "password": "pistol"
+            "email": "eve.holt@reqres.in",
+            "password": ""
         }
 
-        await spec().post(baseUrl + '/register')
+        await spec().post(baseUrl + '/login')
         .withHeaders('Content-Type', 'application/json')
         .withBody(requestBody)
         .expectStatus(400)
